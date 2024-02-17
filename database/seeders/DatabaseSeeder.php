@@ -15,11 +15,20 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-         \App\Models\User::factory()->create([
-             'name' => 'Test User',
-             'email' => 'test@example.com',
-             'email_verified_at' => Carbon::now(),
-             'password' => '1111111111'
-         ]);
+//         \App\Models\User::factory()->create([
+//             'name' => 'Test User',
+//             'email' => 'test@example.com',
+//             'email_verified_at' => Carbon::now(),
+//             'password' => '1111111111'
+//         ]);
+
+        for ($i = 0; $i < 20; $i++) {
+            \App\Models\User::factory()->create([
+                'name' => fake()->name,
+                'email' => fake()->email,
+                'email_verified_at' => Carbon::now(),
+                'password' => '1111111111'
+            ]);
+        }
     }
 }

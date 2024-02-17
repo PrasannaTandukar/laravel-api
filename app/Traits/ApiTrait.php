@@ -1,11 +1,13 @@
 <?php
 namespace App\Traits;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 trait ApiTrait
 {
-    public function successResponse(array $data, string $message, int $code): JsonResponse
+    public function successResponse(array|Collection|LengthAwarePaginator $data, string $message = 'Success', int $code = 200): JsonResponse
     {
         return response()->json([
             'success' => true,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,10 +22,5 @@ Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/test-token', function () {
-        return [
-            'status' => 'Success',
-            'data' => 'test'
-        ];
-    });
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
 });
