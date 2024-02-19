@@ -20,7 +20,7 @@ class UserController extends Controller
         ]);
 
         try {
-            $users = User::select('name', 'email');
+            $users = User::select('id', 'name', 'email');
             if ($request->filled('sortBy')) {
                 $users = $users->orderBy($request->input('sortBy')[0]['key'], $request->input('sortBy')[0]['order']);
             }
@@ -31,5 +31,20 @@ class UserController extends Controller
             return $this->errorResponse([], $exception->getMessage(), $exception->getCode());
         }
 
+    }
+
+    public function deleteMultiple(Request $request)
+    {
+        $request->validate([
+            'userIdArray' => ['required', 'array', 'min:1'],
+            'userIdArray.*' => ['integer']
+        ]);
+
+        try {
+            User::whereIn('id', $request->input('userIdArray'))->delete();
+            return $this->successResponse();
+        } catch (Exception $exception) {
+            return $this->errorResponse([], $exception->getMessage(), $exception->getCode());
+        }
     }
 }

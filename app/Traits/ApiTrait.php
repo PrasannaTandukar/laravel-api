@@ -7,7 +7,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 trait ApiTrait
 {
-    public function successResponse(array|Collection|LengthAwarePaginator $data, string $message = 'Success', int $code = 200): JsonResponse
+    public function successResponse(array|Collection|LengthAwarePaginator $data = [], string $message = 'Success', int $code = 200): JsonResponse
     {
         return response()->json([
             'success' => true,

@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::delete('users/delete-multiple', [UserController::class, 'deleteMultiple'])->name('user.delete-multiple');
 });
